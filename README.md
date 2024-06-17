@@ -30,7 +30,7 @@ RUN service apache2 restart
 ~                                                                                                                                                
 "Dockerfile" 26L, 631B                                                                                                         26,0-1        All
 Dockerfile Explanation:
-*************************************
+****************************************************************************************************************
 FROM php:7.4-apache: This line sets the base image for your Dockerfile. It includes PHP 7.4 and Apache already configured.
 
 WORKDIR /var/www/html: Sets the working directory inside the container where Apache will serve files from.
@@ -58,11 +58,18 @@ make sure you ahve python AWS cli installed on the system
 run the AWS configure
 make sure to run the AWS and Docker login
 this will store the docker credentials on the local system in config.json file on home directory
-use the push commands available on ECR and make chnages as required on the commands to push the image with required tag name.
+########################################################################################################################################################
+###################use the push commands available on ECR and make chnages as required on the commands to push the image with required tag name.###################
+
+Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/d8h8k0u3
+
 Build your Docker image using the following command.
 docker build -t myrepo .
+
 After the build completes, tag your image so you can push the image to this repository:
 docker tag myrepo:latest public.ecr.aws/d8h8k0u3/myrepo:latest
+
 Run the following command to push this image to your newly created AWS repository:
 docker push public.ecr.aws/d8h8k0u3/myrepo:latest
 
