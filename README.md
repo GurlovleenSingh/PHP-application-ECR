@@ -1,4 +1,4 @@
-# PHP-application-ECR
+# Docker/PHP-application-ECR
 Hosting a PHP application on Amazon ECR Repository
 # Use an official PHP runtime as a parent image
 FROM php:7.4-apache
